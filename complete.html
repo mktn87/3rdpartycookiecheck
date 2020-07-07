@@ -3,7 +3,6 @@
 		try {
 			if (parent) {
 				console.log('parent exists')
-				console.log(parent)
 				if (/thirdparty=yes/.test(document.cookie)) {
 					console.log('3rd pc supported')
 					parent.postMessage('MM:3PCsupported', '*');
