@@ -1,22 +1,12 @@
 <body>
 	<script>
-		try {
-			if (parent) {
-				console.log('parent exists')
-				if (/thirdparty=yes/.test(document.cookie)) {
-					console.log('3rd pc supported')
-					parent.postMessage('MM:3PCsupported', '*');
-				} else {
-					console.log('3rd pc not supported')
-					parent.postMessage('MM:3PCunsupported', '*');
-				}
-				document.cookie = 'thirdparty=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+		if (parent) {
+			if (/thirdparty=yes/.test(document.cookie)) {
+				parent.postMessage('MM:3PCsupported', '*');
 			} else {
-				console.log('parent DOES NOT exists')
+				parent.postMessage('MM:3PCunsupported', '*');
 			}
-		} catch (e) {
-			console.log('EXCEPTION ', e);
-			parent.postMessage('MM:3PCunsupported', '*');
+			document.cookie = 'thirdparty=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 		}
 	</script>
 </body>
